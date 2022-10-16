@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+int binary_search(int *arr,int low,int high,int n){
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(n==arr[mid]){
+            return mid;
+        }
+        if(n>arr[mid]){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return -1;
+}
+int searchInfinite(int *arr,int n){
+    int low=0;
+    int high=1;
+    int value=arr[0];
+    while(value<n){
+            low=high;
+            high=high*2;
+            value=arr[high];
+    }
+    return binary_search(arr,low,high,n);
+}
+int main(){
+    
+    int arr[10]={2,3,4,11,22,33,44,22,331,344};
+    cout<<searchInfinite(arr,33);
+return 0;
+}
